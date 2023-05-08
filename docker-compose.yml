@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  server:
+    build: ./server
+    ports:
+      - 5555:5555
+    networks:
+      - app-network
+
+  client:
+    build: ./client
+    ports:
+      - 5556:5556
+    depends_on:
+      - server
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
